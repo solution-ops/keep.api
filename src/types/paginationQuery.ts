@@ -1,1 +1,5 @@
-export type PaginationQuery = { limit: string; offset: string };
+export type PaginationQuery = {
+  limit: string;
+  offset: string;
+  authorId?: string;
+};

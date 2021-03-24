@@ -24,15 +24,14 @@ export class TasksService {
   }
 
   findAll(paginationQuery: PaginationQuery) {
-    const { limit = '10', offset = '0' } = paginationQuery;
+    const { limit = '10', offset = '0', authorId = '' } = paginationQuery;
     const pageSize = parseInt(limit);
     const pageNumber = parseInt(offset);
     return {
       total: this.tasks.length,
-      results: this.tasks.slice(
-        pageNumber * pageSize,
-        pageNumber * pageSize + pageSize,
-      ),
+      results: this.tasks
+        .filter((task) => task.authorId === authorId)
+        .slice(pageNumber * pageSize, pageNumber * pageSize + pageSize),
     };
   }
 
